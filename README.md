@@ -1,5 +1,5 @@
 ESPDHot is an ensemble machine learning method for protein-DNA binding hotspot prediction.
-The authors are Lianci Tao, Tong Zhou, Zhixiang Wu, Fangrui Hu, Shuang Yang and Chunhua Li.
+The authors are Lianci Tao, Tong Zhou, Zhixiang Wu, Fangrui Hu, Shuang Yang, Xiaotian Kong and Chunhua Li.
 The performance process includes feature extraction, feature integration and prediction.
 
 In the following, we take a protein-DNA complex (PDB ID: 4CH1) as an example to show the prediction process. For easy description, we give the indications as follows.
@@ -21,14 +21,14 @@ ESPDHot uses the following dependencies:
 Step 1: feature extraction
 
 1. Physicochemical characteristics of amino acids
-Run ¡®Physicochemical_characteristics.py' (python ./Physicochemical_characteristics.py ./4CH1_A.pdb) with "4CH1_A.pdb" as input file (keep 'Physicochemical_characteristics.py' and '4CH1_A.pdb' in the same folder), to get '4CH1_A_PC.csv'.
+Run Â¡Â®Physicochemical_characteristics.py' (python ./Physicochemical_characteristics.py ./4CH1_A.pdb) with "4CH1_A.pdb" as input file (keep 'Physicochemical_characteristics.py' and '4CH1_A.pdb' in the same folder), to get '4CH1_A_PC.csv'.
 
 2. PSSM
 Go to the website 'https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome'. Run PSI-BLAST (select 'PSI-BLAST' for 'Program Selection' item, set E-value = 0.001 and use default parameters for other items) with the sequence of '4CH1_A.pdb' as input to get a PSSM file and rename it as '4CH1_A.asn_matrix.txt'.
 
 3. Coevolutionary
 a. Go to the website 'https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome'. Run PSI-BLAST (select 'PSI-BLAST' for 'Program Selection' item with default parameters for other items) with the sequence of '4CH1_A.pdb' as input, then run 'multiple alignment' item with the searched sequences of Query Cover >75%, and E-value <0.0001 as input, and finally download the MSA file and rename it as '4CH1.fa'.
-b. run the program 'DCA.m¡¯proposed by Faruck Morcos [(dca(inputfile, outputfile), with inputfile being '4CH1.fa', and outputfile being the output result, 4CH1_A.txt, which should be created in advance].
+b. run the program 'DCA.mÂ¡Â¯proposed by Faruck Morcos [(dca(inputfile, outputfile), with inputfile being '4CH1.fa', and outputfile being the output result, 4CH1_A.txt, which should be created in advance].
 c. '4CH1_A.txt' needs to be processed by the 'coevolution.py' (python ./coevolution.py ./4CH1_A.txt) to get the '4CH1_A_coevolution.csv' file.
 
 4. Secondary structure
@@ -52,7 +52,7 @@ Run the website 'https://sunflower.kuicr.kyoto-u.ac.jp/~sjn/hse/webserver.html' 
 
 8. Interface preference
 a. Run the website 'https://swift.cmbi.umcn.nl/gv/dssp/index.html' to get the dssp file of the 4CH1 and only reserve the structure information of the A chain of the protein and rename it as '4CH1_A.dssp'
-b. Run IP.py (python ./IP.py ./4CH1_A.dssp ./60_4P.data) with 4CH1_A.dssp and 60_4P.data as input file (keep 'IP.py', '4CH1_A.dssp' and '60_4P.data' in the same folder) to get¡®4CH1_A_IP.csv¡¯.
+b. Run IP.py (python ./IP.py ./4CH1_A.dssp ./60_4P.data) with 4CH1_A.dssp and 60_4P.data as input file (keep 'IP.py', '4CH1_A.dssp' and '60_4P.data' in the same folder) to getÂ¡Â®4CH1_A_IP.csvÂ¡Â¯.
 
 9. Network topological feature
 Go to the website 'http://www.sysbio.org.cn/NACEN/' to download 'dssp-3.0.0.exe' and R package 'NACEN', and see the instruction on the website to perform the following operations.
